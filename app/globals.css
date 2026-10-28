@@ -1,0 +1,275 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: dark;
+  --background: #080d1a;
+  --foreground: #f1f5f9;
+}
+
+@layer base {
+  body {
+    background-color: #080d1a;
+    color: #f1f5f9;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+@layer components {
+  /* Mangled classes with mn7x- prefix */
+  .mn7x-wrap {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #080d1a;
+  }
+
+  .mn7x-shell {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    position: relative;
+  }
+
+  .mn7x-sidebar {
+    width: 220px;
+    background-color: #0c1427;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 12px;
+    gap: 8px;
+  }
+
+  /* Pure CSS Drawer for mobile using :target */
+  @media (max-width: 1023px) {
+    .mn7x-sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: -280px;
+      width: 260px;
+      z-index: 60;
+      transition: transform 0.25s ease-in-out;
+      overflow-y: auto;
+      box-shadow: 4px 0 24px rgba(0, 0, 0, 0.8);
+    }
+
+    #mn7x-drawer:target {
+      transform: translateX(280px);
+    }
+
+    .mn7x-scrim {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 55;
+    }
+
+    #mn7x-drawer:target + .mn7x-scrim {
+      display: block;
+    }
+  }
+
+  .mn7x-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mn7x-topbar {
+    height: 64px;
+    background-color: #0c1427;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+
+  .mn7x-search-box {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    padding: 8px 16px;
+    gap: 8px;
+    max-width: 440px;
+    width: 100%;
+    color: #94a3b8;
+  }
+
+  .mn7x-btn-reg {
+    background: linear-gradient(135deg, #ff5500 0%, #ff3700 100%);
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 10px 22px;
+    border-radius: 9999px;
+    font-size: 13px;
+    box-shadow: 0 4px 14px rgba(255, 60, 0, 0.45);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .mn7x-btn-reg:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(255, 60, 0, 0.6);
+  }
+
+  .mn7x-btn-login {
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .mn7x-btn-login:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .mn7x-banner-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 30%, #162447 0%, #0c1427 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .mn7x-cta-casino {
+    background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-radius: 9999px;
+    box-shadow: 0 4px 16px rgba(225, 29, 72, 0.5);
+    transition: all 0.2s ease;
+  }
+
+  .mn7x-cta-casino:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(225, 29, 72, 0.7);
+  }
+
+  .mn7x-cta-sport {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-radius: 9999px;
+    box-shadow: 0 4px 16px rgba(29, 78, 216, 0.5);
+    transition: all 0.2s ease;
+  }
+
+  .mn7x-cta-sport:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(29, 78, 216, 0.7);
+  }
+
+  .mn7x-marquee {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .mn7x-marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mn7x-badge-green {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 12px;
+  }
+
+  .mn7x-support-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #0c1427;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    transition: transform 0.2s ease;
+  }
+
+  .mn7x-support-btn:hover {
+    transform: scale(1.08);
+  }
+}
