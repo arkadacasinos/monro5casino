@@ -8,6 +8,7 @@ export default function RootLayout({
   return (
     <html lang="ru" className="dark">
       <head>
+        <meta name="yandex-verification" content="169bca296103f9b2" />
         <title>Monro Casino официальный сайт – играть онлайн в Монро Казино, рабочее зеркало</title>
         <meta name="description" content="Monro Casino официальный сайт и актуальное рабочее зеркало Монро Казино онлайн. Играть на реальные деньги в слоты, быстрый вход, бонусы на депозит 150% и моментальные выплаты круглосуточно." />
         <meta name="robots" content="index, follow" />
